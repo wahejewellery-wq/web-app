@@ -1,0 +1,36 @@
+.footer {
+    width: 100%;
+    padding: 2rem 0;
+    background-color: var(--color-dark-bg);
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.copy {
+    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+}
+
+.socials {
+    display: flex;
+    gap: 1rem;
+}
+
+.socialLink {
+    color: var(--color-gold-light);
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.socialLink:hover {
+    color: var(--color-gold-primary);
+}

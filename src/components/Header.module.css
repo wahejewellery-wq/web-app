@@ -1,0 +1,66 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    padding: 1rem 0;
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gold-primary);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.links {
+    display: flex;
+    gap: 2rem;
+}
+
+.link {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-text-main);
+    transition: color 0.2s;
+    position: relative;
+}
+
+.link:hover {
+    color: var(--color-gold-primary);
+}
+
+.link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--color-gold-primary);
+    transition: width 0.3s;
+}
+
+.link:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .links {
+        display: none;
+        /* Simple hiding for now, MVP */
+    }
+}

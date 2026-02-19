@@ -1,0 +1,67 @@
+:root {
+  --color-gold-primary: #D4AF37;
+  --color-gold-light: #F1D06E;
+  --color-gold-dark: #aa8c2c;
+  --color-dark-bg: #0F0F0F;
+  --color-card-bg: #1A1A1A;
+  --color-text-main: #FFFFFF;
+  --color-text-muted: #A0A0A0;
+  --color-border: #333333;
+}
+
+body {
+  color: var(--color-text-main);
+  background: var(--color-dark-bg);
+  font-family: var(--font-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), serif;
+  color: var(--color-gold-primary);
+  font-weight: 600;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.text-gold {
+  color: var(--color-gold-primary);
+}
+
+.bg-gold {
+  background-color: var(--color-gold-primary);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-gold-primary), var(--color-gold-dark));
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-sans);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
