@@ -21,3 +21,8 @@ export const getItems = (): PortfolioItem[] => {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored ? JSON.parse(stored) : [];
 };
+
+export const clearItems = () => {
+    if (typeof window === 'undefined') return;
+    localStorage.removeItem(STORAGE_KEY);
+};

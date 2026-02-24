@@ -1,0 +1,122 @@
+.container {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-unvault-bg);
+    padding: 20px;
+    font-family: var(--font-sans), sans-serif;
+}
+
+.card {
+    background: var(--color-unvault-card);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 440px;
+    padding: 48px 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--color-unvault-text);
+    margin-bottom: 8px;
+    font-family: var(--font-serif), serif;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: var(--color-unvault-muted);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-unvault-text);
+}
+
+.input {
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    background: #FFFFFF;
+    color: var(--color-unvault-text);
+    font-size: 15px;
+    transition: all 0.2s ease;
+    outline: none;
+    font-family: var(--font-sans), sans-serif;
+}
+
+.input:focus {
+    border-color: var(--color-unvault-primary);
+    box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.2);
+}
+
+.submitBtn {
+    background: var(--color-unvault-primary);
+    color: #111827;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    margin-top: 8px;
+    font-family: var(--font-sans), sans-serif;
+}
+
+.submitBtn:hover {
+    background: #DCA807;
+    /* Slightly darker gold */
+}
+
+.submitBtn:active {
+    transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.error {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.success {
+    background: #dcfce7;
+    color: #15803d;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-align: center;
+}

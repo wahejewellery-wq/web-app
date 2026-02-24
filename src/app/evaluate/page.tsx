@@ -7,6 +7,8 @@ import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import FileUpload from '@/components/FileUpload';
 import { saveItem } from '@/lib/storage';
+import Cookies from 'js-cookie';
+import { api } from '@/lib/api';
 
 export default function EvaluatePage() {
     const router = useRouter();
@@ -82,20 +84,53 @@ export default function EvaluatePage() {
         }
     };
 
-    const handleSaveToPortfolio = () => {
+    const handleSaveToPortfolio = async () => {
         if (!estimation) return;
 
-        const newItem = {
-            id: Date.now().toString(),
-            title: `${(details.category as string).charAt(0).toUpperCase() + (details.category as string).slice(1)} (${details.karat}K)`,
-            date: new Date().toISOString().split('T')[0],
-            weight: `${(estimation as any).gold_weight}g`,
-            value: (estimation as any).estimated_value,
-            image: file ? URL.createObjectURL(file) : 'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?q=80&w=600&auto=format&fit=crop'
-        };
+        const titleText = `${(details.category as string).charAt(0).toUpperCase() + (details.category as string).slice(1)} (${details.karat}K)`;
+        const imageSrc = file ? URL.createObjectURL(file) : 'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?q=80&w=600&auto=format&fit=crop';
 
-        saveItem(newItem);
-        router.push('/portfolio');
+        const token = Cookies.get('token');
+        if (token) {
+            // Save to Backend API
+            try {
+                // Determine image url mapping for backend. 
+                // Note: file blob urls won't work across sessions, in a real app this should be a CDN link uploaded during step 2.
+                // We'll pass the base64 or null.
+                let imageUrlToSave = imageSrc;
+                if (imageSrc.startsWith('blob:')) {
+                    imageUrlToSave = ''; // Or handling base64, but keeping empty for now per schema
+                }
+
+                await api.post('/evaluations/', {
+                    title: titleText,
+                    category: details.category,
+                    purity: details.karat,
+                    gold_weight: `${(estimation as any).gold_weight}g`,
+                    estimated_value: (estimation as any).estimated_value,
+                    image_url: imageUrlToSave || null
+                });
+                router.push('/dashboard');
+            } catch (err) {
+                console.error("Failed to save to backend", err);
+                setError("Failed to save evaluation to your account.");
+            }
+        } else {
+            // Guest mode -> save to LocalStorage
+            const newItem = {
+                id: Date.now().toString(),
+                title: titleText,
+                date: new Date().toISOString().split('T')[0],
+                weight: `${(estimation as any).gold_weight}g`,
+                value: (estimation as any).estimated_value,
+                image: imageSrc
+            };
+
+            saveItem(newItem);
+            router.push('/dashboard');
+            // the new dashboard page replaces portfolio. Even without a token, Nextjs router redirect in dashboard page handles guest bounce. 
+            // Wait, we need to consider if guest can view portfolio. Earlier they could. Let's let them go to dashboard and the dashboard page handles the view.
+        }
     };
 
     return (
@@ -250,9 +285,14 @@ export default function EvaluatePage() {
                             </div>
                         </div>
 
-                        <Button fullWidth onClick={handleSaveToPortfolio}>
-                            Save to Portfolio
-                        </Button>
+                        <div style={{ display: 'flex', gap: '1rem' }}>
+                            <Button fullWidth onClick={handleSaveToPortfolio}>
+                                Save to Portfolio
+                            </Button>
+                            <Button fullWidth onClick={() => alert('Selling with Wahe feature coming soon!')} style={{ background: 'transparent', border: '1px solid var(--color-gold-primary)', color: 'var(--color-gold-primary)' }}>
+                                Sell with Wahe
+                            </Button>
+                        </div>
                     </div>
                 )}
             </Card>

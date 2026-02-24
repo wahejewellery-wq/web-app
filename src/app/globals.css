@@ -7,6 +7,16 @@
   --color-text-main: #FFFFFF;
   --color-text-muted: #A0A0A0;
   --color-border: #333333;
+
+  /* Unvault Theme */
+  --color-unvault-bg: #FAF9F6;
+  /* Soft off-white/cream */
+  --color-unvault-card: #FFFFFF;
+  --color-unvault-text: #111827;
+  /* Dark slate */
+  --color-unvault-muted: #6B7280;
+  --color-unvault-primary: #EAB308;
+  /* Signature mustard gold */
 }
 
 body {
@@ -17,7 +27,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif), serif;
   color: var(--color-gold-primary);
   font-weight: 600;
