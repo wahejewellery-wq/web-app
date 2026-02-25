@@ -2,11 +2,11 @@
   --color-gold-primary: #D4AF37;
   --color-gold-light: #F1D06E;
   --color-gold-dark: #aa8c2c;
-  --color-dark-bg: #0F0F0F;
-  --color-card-bg: #1A1A1A;
-  --color-text-main: #FFFFFF;
-  --color-text-muted: #A0A0A0;
-  --color-border: #333333;
+  --color-dark-bg: #FFFFFF;
+  --color-card-bg: #F9F9F9;
+  --color-text-main: #1A1A1A;
+  --color-text-muted: #666666;
+  --color-border: #E5E5E5;
 
   /* Unvault Theme */
   --color-unvault-bg: #FAF9F6;

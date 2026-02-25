@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { api } from '@/lib/api';
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
-import styles from './dashboard.module.css';
 import { getItems, clearItems } from '@/lib/storage';
 
 interface User {
@@ -105,219 +103,109 @@ export default function DashboardPage() {
     };
 
     if (loading) {
-        return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'var(--color-unvault-text)', background: 'var(--color-unvault-bg)' }}>Loading your dashboard...</div>;
+        return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: '#1A1A1A', background: '#FAFAFA' }}>Loading your dashboard...</div>;
     }
 
     if (!user) return null;
 
     const totalValue = evaluations.reduce((sum, item) => sum + item.estimated_value, 0);
-    const totalWeight = evaluations.reduce((sum, item) => {
-        const weightVal = parseFloat(item.gold_weight.replace('g', ''));
-        return sum + (isNaN(weightVal) ? 0 : weightVal);
-    }, 0);
-
-    const totalDiamondCarats = evaluations.reduce((sum, item) => {
-        if (!item.diamond_weight) return sum;
-        const ctVal = parseFloat(item.diamond_weight.replace(/[^\d.]/g, ''));
-        return sum + (isNaN(ctVal) ? 0 : ctVal);
-    }, 0);
-
-    let goldTotalValue = 0;
-    let gemTotalValue = 0;
-
-    evaluations.forEach(item => {
-        if (item.diamond_weight) {
-            goldTotalValue += item.estimated_value * 0.8;
-            gemTotalValue += item.estimated_value * 0.2;
-        } else {
-            goldTotalValue += item.estimated_value;
-        }
-    });
-
-    const goldPercent = totalValue > 0 ? (goldTotalValue / totalValue) * 100 : 100;
-    const gemPercent = totalValue > 0 ? (gemTotalValue / totalValue) * 100 : 0;
 
     // Generate mock historical trajectory (roughly 22% growth over year mimicking actual gold prices)
     const historicalMultipliers = [0.82, 0.83, 0.85, 0.84, 0.86, 0.88, 0.89, 0.91, 0.94, 0.96, 0.98, 1.0];
     const growthPercentage = (((1.0 - historicalMultipliers[0]) / historicalMultipliers[0]) * 100).toFixed(1);
 
-    const mockChartData = Array.from({ length: 12 }, (_, i) => {
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const date = new Date();
-        date.setMonth(date.getMonth() - (11 - i));
-
-        const val = totalValue * historicalMultipliers[i];
-
-        return {
-            name: monthNames[date.getMonth()],
-            value: Math.round(val)
-        };
-    });
-
-    // Custom Tooltip for Recharts
-    const CustomTooltip = ({ active, payload, label }: any) => {
-        if (active && payload && payload.length) {
-            return (
-                <div style={{ background: '#fff', padding: '8px 12px', border: '1px solid #E5E7EB', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
-                    <p style={{ margin: 0, fontSize: '13px', color: '#6B7280', marginBottom: '4px' }}>{label}</p>
-                    <p style={{ margin: 0, fontSize: '16px', fontWeight: 600, color: '#111827' }}>₹{payload[0].value.toLocaleString('en-IN')}</p>
-                </div>
-            );
-        }
-        return null;
-    };
-
-    const displayedItems = evaluations.filter(item => {
-        if (activeFilter === 'Tracking') return true;
-        return false;
-    });
 
     return (
-        <div className={styles.container}>
-            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                <header className={styles.header}>
-                    <div>
-                        <h1 className={styles.pageTitle}>Welcome Back, {user.full_name?.split(' ')[0] || 'User'}</h1>
-                        <p className={styles.pageSubtitle}>Track the live value of your jewelry portfolio securely.</p>
-                    </div>
-                    <button onClick={handleLogout} className={styles.logoutBtn}>
-                        Log Out
-                    </button>
-                </header>
+        <div style={{ backgroundColor: '#f8f8f6', color: '#0f172a', minHeight: '100vh', width: '100vw', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
 
-                <section className={styles.summary}>
-                    <div className={styles.mainCard}>
-                        <div className={styles.mainValueHeader}>
-                            <h2 className={styles.mainValue}>₹{totalValue.toLocaleString('en-IN')}</h2>
-                            {totalValue > 0 && <span className={styles.growthBadge}>+{growthPercentage}% (1yr)</span>}
-                            <span className={styles.mainLabel}>Est. Value</span>
-                        </div>
+            {/* Header Area */}
+            <div style={{ padding: '3rem 1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <h2 style={{ fontSize: '0.875rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0f172a' }}>Jewellery Portfolio</h2>
+                    <p style={{ color: '#64748b', fontSize: '0.875rem' }}>{user.full_name?.split(' ')[0] || 'User'}</p>
+                </div>
+                <button onClick={handleLogout} style={{ border: 'none', background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '2.5rem', height: '2.5rem', borderRadius: '50%', backgroundColor: 'rgba(237, 188, 29, 0.2)' }}>
+                    <span style={{ color: '#edbc1d', fontSize: '1.25rem' }}>🚪</span>
+                </button>
+            </div>
 
-                        {/* Line Chart */}
-                        <div className={styles.chartContainer}>
-                            <ResponsiveContainer width="100%" height="100%">
-                                <AreaChart data={mockChartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
-                                    <defs>
-                                        <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#EAB308" stopOpacity={0.2} />
-                                            <stop offset="95%" stopColor="#EAB308" stopOpacity={0} />
-                                        </linearGradient>
-                                    </defs>
-                                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} dy={10} minTickGap={20} />
-                                    <Tooltip content={<CustomTooltip />} />
-                                    <Area type="monotone" dataKey="value" stroke="#EAB308" strokeWidth={2} fillOpacity={1} fill="url(#colorValue)" />
-                                </AreaChart>
-                            </ResponsiveContainer>
-                        </div>
+            {/* Portfolio Value Section */}
+            <div style={{ padding: '0 1.5rem 2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                <p style={{ color: '#64748b', fontSize: '0.875rem', fontWeight: 500, letterSpacing: '0.025em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Total Portfolio Value</p>
+                <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '3rem', fontWeight: 300, color: '#edbc1d', marginBottom: '0.25rem' }}>
+                    ₹{totalValue.toLocaleString('en-IN')}
+                </h1>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: '#10b981', fontSize: '0.875rem', fontWeight: 600 }}>
+                    <span style={{ fontSize: '1rem' }}>↗</span>
+                    <span>+{growthPercentage}% this year</span>
+                </div>
+            </div>
 
-                        {/* Breakdown Section */}
-                        <div className={styles.breakdownSection}>
-                            <div className={styles.progressBarTrack}>
-                                <div className={styles.progressGold} style={{ width: `${goldPercent}%` }}></div>
-                                {gemPercent > 0 && <div className={styles.progressGems} style={{ width: `${gemPercent}%` }}></div>}
+            {/* Quick Stats Row */}
+            <div style={{ display: 'flex', gap: '1rem', padding: '0 1.5rem', marginBottom: '2rem' }}>
+                <div style={{ flex: 1, backgroundColor: '#ffffff', border: '1px solid #f1f5f9', padding: '1rem', borderRadius: '0.75rem', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}>
+                    <p style={{ color: '#64748b', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '-0.05em', marginBottom: '0.25rem' }}>Total Items</p>
+                    <p style={{ fontSize: '1.25rem', fontWeight: 700, color: '#0f172a' }}>{evaluations.length} Pieces</p>
+                </div>
+                <div style={{ flex: 1, backgroundColor: '#ffffff', border: '1px solid #f1f5f9', padding: '1rem', borderRadius: '0.75rem', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}>
+                    <p style={{ color: '#64748b', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '-0.05em', marginBottom: '0.25rem' }}>Last Evaluation</p>
+                    <p style={{ fontSize: '1.25rem', fontWeight: 700, color: '#0f172a' }}>Recently</p>
+                </div>
+            </div>
+
+            {/* Recent Evaluations Section */}
+            <div style={{ padding: '0 1.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                    <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: '#0f172a' }}>Recent Evaluations</h3>
+                    <a href="#" onClick={(e) => { e.preventDefault(); router.push('/evaluate') }} style={{ color: '#edbc1d', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textDecoration: 'none' }}>+ Add New</a>
+                </div>
+
+                {/* Grid of Jewellery Cards */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '1rem', paddingBottom: '6rem' }}>
+                    {evaluations.map((item) => (
+                        <div key={item.id} style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', border: '1px solid #f1f5f9', borderRadius: '0.75rem', overflow: 'hidden' }}>
+                            <div style={{ aspectRatio: '1/1', backgroundColor: '#f1f5f9', position: 'relative', overflow: 'hidden' }}>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                    src={item.image_url || "https://images.unsplash.com/photo-1599643478518-17488fbbcd75?q=80&w=600&auto=format&fit=crop"}
+                                    alt={item.title}
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                />
                             </div>
-
-                            <div className={styles.breakdownLegend}>
-                                <div className={styles.legendRow}>
-                                    <div className={styles.legendLeft}>
-                                        <div className={styles.legendDotGold}></div>
-                                        <span>Gold</span>
-                                    </div>
-                                    <div className={styles.legendRight}>
-                                        <div className={styles.legendValue}>₹{Math.round(goldTotalValue).toLocaleString('en-IN')}</div>
-                                        <div className={styles.legendWeight}>{totalWeight.toFixed(1)}g</div>
-                                    </div>
-                                </div>
-                                {gemPercent > 0 && (
-                                    <div className={styles.legendRow}>
-                                        <div className={styles.legendLeft}>
-                                            <div className={styles.legendDotGems}></div>
-                                            <span>Gemstones</span>
-                                        </div>
-                                        <div className={styles.legendRight}>
-                                            <div className={styles.legendValue}>₹{Math.round(gemTotalValue).toLocaleString('en-IN')}</div>
-                                            <div className={styles.legendWeight}>{totalDiamondCarats.toFixed(2)}ct</div>
-                                        </div>
-                                    </div>
-                                )}
+                            <div style={{ padding: '0.75rem' }}>
+                                <p style={{ color: '#0f172a', fontSize: '0.875rem', fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.title}</p>
+                                <p style={{ color: '#edbc1d', fontSize: '0.875rem', fontWeight: 600, marginTop: '0.25rem' }}>₹{item.estimated_value.toLocaleString('en-IN')}</p>
                             </div>
                         </div>
-                    </div>
-                </section>
-
-                <section>
-                    <div className={styles.filters}>
-                        <div
-                            className={`${styles.filterPill} ${activeFilter === 'Tracking' ? styles.filterPillActive : ''}`}
-                            onClick={() => setActiveFilter('Tracking')}
-                        >
-                            Tracking ({evaluations.length})
-                        </div>
-                        <div
-                            className={`${styles.filterPill} ${activeFilter === 'Selling' ? styles.filterPillActive : ''}`}
-                            onClick={() => setActiveFilter('Selling')}
-                        >
-                            Selling (0)
-                        </div>
-                        <div
-                            className={`${styles.filterPill} ${activeFilter === 'Sold' ? styles.filterPillActive : ''}`}
-                            onClick={() => setActiveFilter('Sold')}
-                        >
-                            Sold (0)
-                        </div>
-                    </div>
-
-                    {syncing && <p style={{ color: 'var(--color-unvault-muted)', marginBottom: '1rem', fontStyle: 'italic' }}>Syncing offline evaluations to your vault...</p>}
-
-                    {displayedItems.length === 0 ? (
-                        <div className={styles.emptyState}>
-                            <h3 className={styles.emptyTitle}>Nothing here yet</h3>
-                            <p className={styles.emptySubtitle}>
-                                {activeFilter === 'Tracking'
-                                    ? "Unlock the true value of your jewelry transparently. Evaluate your first piece in 60 seconds."
-                                    : `You have no items marked as ${activeFilter}.`}
-                            </p>
-                            {activeFilter === 'Tracking' && (
-                                <button
-                                    onClick={() => router.push('/evaluate')}
-                                    className={styles.evaluateBtn}
-                                >
-                                    Get Instant Valuation
-                                </button>
-                            )}
-                        </div>
-                    ) : (
-                        <div className={styles.grid}>
-                            {displayedItems.map((item) => (
-                                <div key={item.id} className={styles.card}>
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
-                                        src={item.image_url || "https://images.unsplash.com/photo-1599643478518-17488fbbcd75?q=80&w=600&auto=format&fit=crop"}
-                                        alt={item.title}
-                                        className={styles.itemImage}
-                                    />
-                                    <div className={styles.itemContent}>
-                                        <div className={styles.itemHeader}>
-                                            <h3 className={styles.itemTitle}>{item.title}</h3>
-                                        </div>
-                                        <p className={styles.itemSubtitle}>
-                                            {item.gold_weight} | Tracked since {new Date(item.created_at).getFullYear()}
-                                        </p>
-                                        <div className={styles.itemFooter}>
-                                            <div className={styles.itemPrice}>
-                                                ₹{item.estimated_value.toLocaleString('en-IN')}
-                                            </div>
-                                            <button className={styles.actionBtn}>
-                                                Sell
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                    ))}
+                    {evaluations.length === 0 && (
+                        <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', backgroundColor: '#ffffff', borderRadius: '0.75rem', border: '1px dashed #e2e8f0' }}>
+                            <p style={{ color: '#64748b', fontSize: '0.875rem' }}>No items evaluated yet.</p>
                         </div>
                     )}
-                </section>
+                </div>
             </div>
+
+            {/* Floating Action Button for Adding New Items */}
+            <button onClick={() => router.push('/evaluate')} style={{
+                position: 'fixed',
+                bottom: '6rem',
+                right: '1.5rem',
+                width: '3.5rem',
+                height: '3.5rem',
+                borderRadius: '50%',
+                backgroundColor: '#edbc1d',
+                color: '#ffffff',
+                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+            }}>
+                <span style={{ fontSize: '2rem' }}>+</span>
+            </button>
         </div>
     );
 }
