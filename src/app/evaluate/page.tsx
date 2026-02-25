@@ -55,10 +55,20 @@ export default function EvaluatePage() {
                 formData.append('category', details.category);
                 formData.append('purity', details.karat);
 
-                const response = await fetch('/api/estimate', {
+                // Send directly to backend to avoid Vercel 10s timeout and 4.5MB payload limit
+                const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+                const response = await fetch(`${API_URL}/predict`, {
                     method: 'POST',
                     body: formData,
                 });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error("Backend API Error:", response.status, errorText);
+                    setError(`Server Error (${response.status}): The AI backend took too long to wake up. Please try again!`);
+                    setLoading(false);
+                    return;
+                }
 
                 let result;
                 try {
@@ -68,16 +78,39 @@ export default function EvaluatePage() {
                     throw new Error("Invalid response from server");
                 }
 
-                if (result.success) {
-                    setEstimation(result.data);
+                if (result && result.success && result.data) {
+                    // Extract data from backend
+                    const { gold_weight, diamond_weight } = result.data;
+                    const goldWeight = gold_weight || 0;
+                    const diamondWeight = diamond_weight || 0;
+
+                    // Valuation Logic (same as old /api/estimate)
+                    const CURRENT_GOLD_PRICE_PER_GRAM_24K = 7500;
+                    const DIAMOND_PRICE_PER_CT = 35000;
+
+                    const purityFactor = parseInt(details.karat) / 24;
+                    const goldValue = goldWeight * CURRENT_GOLD_PRICE_PER_GRAM_24K * purityFactor;
+                    const stoneValue = diamondWeight * DIAMOND_PRICE_PER_CT;
+                    const totalValue = goldValue + stoneValue;
+
+                    setEstimation({
+                        estimated_value: Math.round(totalValue || 0),
+                        gold_weight: goldWeight,
+                        diamond_weight: diamondWeight,
+                        breakdown: {
+                            gold_value: Math.round(goldValue),
+                            stone_value: Math.round(stoneValue)
+                        },
+                        currency: 'INR'
+                    } as any);
                     setStep(4);
                 } else {
-                    console.error("Estimation failed:", result.error);
+                    console.error("Estimation failed:", result);
                     setError(result.error || "Estimation failed. Please try again.");
                 }
             } catch (error) {
                 console.error("Estimation request failed", error);
-                setError("Network error. Please try again.");
+                setError("Network error: The backend might be starting up from sleep. Please click Analyze again.");
             } finally {
                 setLoading(false);
             }
