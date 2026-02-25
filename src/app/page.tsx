@@ -17,10 +17,17 @@ export default function Home() {
           borderRadius: '0.75rem',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
           marginBottom: '1rem',
-          backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcjZDfilZXEVRNr___V2q7BdssrAf6zUmjql5vM6KjLdw-NJ1gwAnq8U59vywy5J6Xw2UvVJH86PswdrX9L5BCIKDkaNaUbOvJpxrUpuxfnSdNhrFQENOK-2X2DPgoefkY71TT3YAzC6FOXZD7StABZG-QqoE9qCvlCn5p4Vjwl_jrPipYhylzj1MO0uWaQ5CAaHA7Maj-HehcoMyF2aQBYdYKNBi183rcJKaC46SLj_pHfN3HqF3YDwwE-GANaV2cgZVOotoV6SM")',
-          backgroundPosition: 'center',
-          backgroundSize: 'cover'
-        }}></div>
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <Image
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcjZDfilZXEVRNr___V2q7BdssrAf6zUmjql5vM6KjLdw-NJ1gwAnq8U59vywy5J6Xw2UvVJH86PswdrX9L5BCIKDkaNaUbOvJpxrUpuxfnSdNhrFQENOK-2X2DPgoefkY71TT3YAzC6FOXZD7StABZG-QqoE9qCvlCn5p4Vjwl_jrPipYhylzj1MO0uWaQ5CAaHA7Maj-HehcoMyF2aQBYdYKNBi183rcJKaC46SLj_pHfN3HqF3YDwwE-GANaV2cgZVOotoV6SM"
+            alt="Gold Jewellery Hero Image"
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+        </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '3rem', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.02em', color: '#0f172a' }}>
             Elegance <br /> Redefined by <br /> <span style={{ fontStyle: 'italic' }}>Intelligence</span>
@@ -104,7 +111,14 @@ export default function Home() {
 
           {/* Card 1 */}
           <div style={{ minWidth: '280px', height: '400px', position: 'relative', borderRadius: '0.75rem', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', inset: 0, backgroundSize: 'cover', backgroundPosition: 'center', backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCawW5RvHsbGUBSw9nlwMaL3KCHZLNo0d5LTTz7-ix0o6sv4RP2HI9vJdDxVVUEYInah0dcDCK-0dN9sRCSABjJGFe8xAv97m8EK1lRgbuIGYBFSajJejK1_ZUJ1kqNYS_vUvmkqgch0ugEoMFMm9BrL6Fj1QE_eWJ_fUeDXPKYXEUR2G-JI7dPyzROCbhmA2SOJFfZ-VAWfvWtVMSr32ILJF555_yPWfmZg3nIvx0Qgnqi_Si1dSkDvZ4quz1mOnna6vcE_v9qaPw")' }}></div>
+            <Image
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCawW5RvHsbGUBSw9nlwMaL3KCHZLNo0d5LTTz7-ix0o6sv4RP2HI9vJdDxVVUEYInah0dcDCK-0dN9sRCSABjJGFe8xAv97m8EK1lRgbuIGYBFSajJejK1_ZUJ1kqNYS_vUvmkqgch0ugEoMFMm9BrL6Fj1QE_eWJ_fUeDXPKYXEUR2G-JI7dPyzROCbhmA2SOJFfZ-VAWfvWtVMSr32ILJF555_yPWfmZg3nIvx0Qgnqi_Si1dSkDvZ4quz1mOnna6vcE_v9qaPw"
+              alt="Vintage Gold"
+              fill
+              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, 280px"
+            />
+            <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%)' }}></div>
             <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
               <p style={{ color: '#FFFFFF', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.25rem' }}>Heritage</p>
               <h4 style={{ color: '#FFFFFF', fontSize: '1.25rem', fontWeight: 300 }}>Vintage Gold</h4>
@@ -113,7 +127,14 @@ export default function Home() {
 
           {/* Card 2 */}
           <div style={{ minWidth: '280px', height: '400px', position: 'relative', borderRadius: '0.75rem', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', inset: 0, backgroundSize: 'cover', backgroundPosition: 'center', backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAg2W6pZ4JEhgaKcRGCYIj3IyOQNtsb7CYrN-hLVMx-D13i6qObUs4ZRw8EYFFTKdeEtCi1dH4e4aE1LPnFIZwREGqOJ5UUKWl1WiuCpp62SNSHgoab-pc28QhZGM50gOWTIvl4GkHlv1b004t9uLVyrzaZWhju6phdP_F-k4HYHd6skr_xKIALN12vig4LEUK7dSluHZ_9jj5g2cYNfBF37pu9tvKQDiK7rCpjFF9ukvY2IeymNcxndHByQsj1n4QMdSnti7J1Hq0")' }}></div>
+            <Image
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg2W6pZ4JEhgaKcRGCYIj3IyOQNtsb7CYrN-hLVMx-D13i6qObUs4ZRw8EYFFTKdeEtCi1dH4e4aE1LPnFIZwREGqOJ5UUKWl1WiuCpp62SNSHgoab-pc28QhZGM50gOWTIvl4GkHlv1b004t9uLVyrzaZWhju6phdP_F-k4HYHd6skr_xKIALN12vig4LEUK7dSluHZ_9jj5g2cYNfBF37pu9tvKQDiK7rCpjFF9ukvY2IeymNcxndHByQsj1n4QMdSnti7J1Hq0"
+              alt="Modern Minimalist"
+              fill
+              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, 280px"
+            />
+            <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%)' }}></div>
             <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
               <p style={{ color: '#FFFFFF', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.25rem' }}>Contemporary</p>
               <h4 style={{ color: '#FFFFFF', fontSize: '1.25rem', fontWeight: 300 }}>Modern Minimalist</h4>

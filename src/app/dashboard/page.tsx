@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { api } from '@/lib/api';
 import { getItems, clearItems } from '@/lib/storage';
+import Image from 'next/image';
 
 interface User {
     id: number;
@@ -165,11 +166,11 @@ export default function DashboardPage() {
                     {evaluations.map((item) => (
                         <div key={item.id} style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', border: '1px solid #f1f5f9', borderRadius: '0.75rem', overflow: 'hidden' }}>
                             <div style={{ aspectRatio: '1/1', backgroundColor: '#f1f5f9', position: 'relative', overflow: 'hidden' }}>
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                                <Image
                                     src={item.image_url || "https://images.unsplash.com/photo-1599643478518-17488fbbcd75?q=80&w=600&auto=format&fit=crop"}
                                     alt={item.title}
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                    fill
+                                    style={{ objectFit: 'cover' }}
                                 />
                             </div>
                             <div style={{ padding: '0.75rem' }}>
