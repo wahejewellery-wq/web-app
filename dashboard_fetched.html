@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jewellery Portfolio Dashboard Variant 1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#edbc1d",
+              "background-light": "#f8f8f6",
+              "background-dark": "#221e10",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .serif-elegant {
+            font-family: 'Times New Roman', serif; /* Simulating the elegant serif look for the display value */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-20">
+<!-- Header / Navigation -->
+<div class="flex items-center justify-between p-6 pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">menu</span>
+</div>
+<h2 class="text-sm font-bold tracking-widest uppercase text-slate-900 dark:text-slate-100">Jewellery Portfolio</h2>
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">account_circle</span>
+</div>
+</div>
+<!-- Portfolio Value Section -->
+<div class="px-6 py-8 flex flex-col items-center text-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium tracking-wide mb-2 uppercase">Total Portfolio Value</p>
+<h1 class="serif-elegant text-5xl font-light text-primary mb-1">₹2,450,000</h1>
+<div class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 text-sm font-semibold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+3.2% this month</span>
+</div>
+</div>
+<!-- Quick Stats Row -->
+<div class="flex gap-4 px-6 mb-8">
+<div class="flex-1 bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 p-4 rounded-xl shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-tighter mb-1">Total Items</p>
+<p class="text-xl font-bold text-slate-900 dark:text-slate-100">24 Pieces</p>
+</div>
+<div class="flex-1 bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 p-4 rounded-xl shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-tighter mb-1">Last Evaluation</p>
+<p class="text-xl font-bold text-slate-900 dark:text-slate-100">2 days ago</p>
+</div>
+</div>
+<!-- Recent Evaluations Section -->
+<div class="px-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Recent Evaluations</h3>
+<a class="text-primary text-xs font-bold uppercase tracking-wider" href="#">View All</a>
+</div>
+<!-- Grid of Jewellery Cards -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Card 1 -->
+<div class="group flex flex-col bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700 rounded-xl overflow-hidden">
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 relative overflow-hidden">
+<img alt="Diamond Necklace" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close up of a luxury diamond necklace on display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQZksnVMBOmdvrn6AywaufkzuW0PVfbWB8PuU_WJV3QUuQD3sqV7lmy37dQYZ3twAqvocDkm1O8oeHu1ogPAj8rktvK5Y4rzJ7fd6nPkY0R_Oo3hUXCybc2N4uHLgi3jwRAoxoG8oNuhRdeRvk1XdqfLsBD0VYcAfkq28lyMbZxwzWQoVSG3GLStApFkz7CGQ1KieZbcHgU418-Nq4zLjgqBRH9Xg-DdAiZdW0fdB3sKCQhXRWal8WU4pn0rFWuWF25f0KWGJAAW8"/>
+</div>
+<div class="p-3">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold truncate">Solitaire Necklace</p>
+<p class="text-primary text-sm font-semibold mt-1">₹850,000</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group flex flex-col bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700 rounded-xl overflow-hidden">
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 relative overflow-hidden">
+<img alt="Gold Ring" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Exquisite gold ring with a large gemstone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlspyHDGrmZIQDEoNrWsRoVXF3PO9Khs3U-RurDV1fzfvGxAmrmQMGKxOl-DxVBeJY0di5vMOgwmxdE7aodZKPXcCfg5ll4Tm6QbnC4Rq0enWD5u4Eq-g_1jq5U3Y0uB9KLseQKmSEWBKw2T3fvd9iV96QulRljsdRFxtZ_WHpnF42GP02WiB6n_lx-qgacToCsGvrzEHkfKiTniqYGlgyy_bHSkiSNEMZwgGUaXdI2L8_nmrZMG_JlncptCcWFwRrpLKZVaNM2nI"/>
+</div>
+<div class="p-3">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold truncate">Emerald Gold Ring</p>
+<p class="text-primary text-sm font-semibold mt-1">₹420,000</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group flex flex-col bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700 rounded-xl overflow-hidden">
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 relative overflow-hidden">
+<img alt="Pearl Earrings" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Elegant pair of classic white pearl earrings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyon4YlTFWeg4kgnLVsWieFfSprCS-pb5z0Uj3lnM0-6Mooja3pQhNne0ikntEHaHbPU7j1KDr6yYZy0c4hWjBY54zghjsI79nSVNwe6-_PXVNbZwctpDJ_2U0UCMDAIUEPBc0jgvlFbQSnqXaM8uc3f8TLLDyJq0-xZACSTTPEc1wAK5jVm8aYGFCEgvMUM25zsuihVP_qYsKDL2n_lccigwnpC4_PpwoNg0mOkQ6-w_e4tS8gRAt7Dqm_DcY-X2Vctdny3VuqaU"/>
+</div>
+<div class="p-3">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold truncate">Pearl Drop Earrings</p>
+<p class="text-primary text-sm font-semibold mt-1">₹125,000</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group flex flex-col bg-white dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700 rounded-xl overflow-hidden">
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 relative overflow-hidden">
+<img alt="Diamond Bracelet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Sophisticated sparkling diamond bracelet on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa7Li55IaU00CYA2oumjQkDqwwNZ1yUqyCamrnGZnXrBVQ3Sis-OffuqFyhQNXvbQ4hu3Mgv4tNsgsQThK4jGS9NaV7qsIdImCgMty4Sufkw4K83pO6d5V-ZAVv7qFMPVF8ysDoBwjCjgx-MlSYyaSfQ2LO1SpIKf2mfVbECKdGz7MjPZgYrXEgBj2MPkoLhhyv3QRCF5dN3pp_0BVdo6-qa7zjA5QrDTs4_Xu5UxxDedw0koHhVrug-AJ-Ouq59-PI-A5-vg8_MQ"/>
+</div>
+<div class="p-3">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold truncate">Tennis Bracelet</p>
+<p class="text-primary text-sm font-semibold mt-1">₹680,000</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button for Adding New Items -->
+<button class="fixed bottom-24 right-6 size-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 px-6 py-3">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">home</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Home</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">diamond</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Portfolio</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Insights</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-bold uppercase tracking-widest">Profile</p>
+</a>
+</div>
+</div>
+</body></html>

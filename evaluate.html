@@ -1,0 +1,118 @@
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#edbc1d",
+                        "background-light": "#f8f8f6",
+                        "background-dark": "#221e10",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+        }
+        .font-display {
+            font-family: 'Noto Serif', serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex justify-center">
+<div class="relative flex h-full min-h-screen w-full max-w-[430px] flex-col bg-white dark:bg-background-dark shadow-2xl overflow-x-hidden">
+<!-- Top Navigation -->
+<div class="flex items-center p-4 pb-2 justify-between">
+<button class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold font-display leading-tight tracking-tight flex-1 text-center pr-12">Evaluation Form</h2>
+</div>
+<!-- Progress Indicator -->
+<div class="flex w-full flex-row items-center justify-center gap-3 py-6">
+<div class="h-2 w-2 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+<div class="h-2.5 w-2.5 rounded-full bg-primary"></div>
+<div class="h-2 w-2 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+<div class="h-2 w-2 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+</div>
+<div class="flex flex-col px-6">
+<h3 class="text-slate-900 dark:text-slate-100 text-3xl font-bold font-display leading-tight pb-2 pt-4">Upload Photo</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal mb-8">Step 2 of 4: Document your item</p>
+<!-- Upload Area -->
+<div class="flex flex-col mb-8">
+<div class="flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-primary/30 bg-primary/5 px-6 py-16 hover:bg-primary/10 transition-colors cursor-pointer">
+<div class="flex flex-col items-center gap-3">
+<div class="bg-primary/20 p-4 rounded-full">
+<span class="material-symbols-outlined text-primary text-4xl">add_a_photo</span>
+</div>
+<div class="flex max-w-[280px] flex-col items-center gap-1">
+<p class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight text-center">Tap to upload</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal leading-normal text-center">Upload a clear high-resolution photo for precise AI analysis</p>
+</div>
+</div>
+<button class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm font-bold shadow-sm">
+<span>Select Image</span>
+</button>
+</div>
+</div>
+<!-- Form Fields -->
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-slate-900 dark:text-slate-100 text-sm font-bold font-display uppercase tracking-wider">Jewellery Type</label>
+<div class="relative">
+<select class="appearance-none w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 h-14 px-4 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+<option value="">Select type</option>
+<option value="ring">Gold Ring</option>
+<option value="necklace">Necklace</option>
+<option value="bracelet">Bracelet</option>
+<option value="earrings">Earrings</option>
+</select>
+<div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-slate-900 dark:text-slate-100 text-sm font-bold font-display uppercase tracking-wider">Estimated Weight (grams)</label>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 h-14 px-4 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-slate-400" placeholder="0.00" type="number"/>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="mt-12 mb-10">
+<button class="w-full bg-slate-950 dark:bg-slate-100 text-white dark:text-slate-950 h-14 rounded-lg font-bold text-base tracking-wide flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span>Analyze</span>
+<span class="material-symbols-outlined text-xl">auto_awesome</span>
+</button>
+<p class="text-center text-slate-400 dark:text-slate-500 text-xs mt-4 px-4">AI analysis typically takes 5-10 seconds to process your high-resolution images.</p>
+</div>
+</div>
+<!-- Bottom Tab Indicator (iOS Style) -->
+<div class="mt-auto flex justify-center pb-2">
+<div class="h-1.5 w-32 rounded-full bg-slate-200 dark:bg-slate-800"></div>
+</div>
+</div>
+</body></html>

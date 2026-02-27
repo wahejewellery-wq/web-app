@@ -33,6 +33,7 @@ export default function DashboardPage() {
     const [evaluations, setEvaluations] = useState<Evaluation[]>([]);
     const [loading, setLoading] = useState(true);
     const [syncing, setSyncing] = useState(false);
+    const [selectedEvaluation, setSelectedEvaluation] = useState<Evaluation | null>(null);
     const [activeFilter, setActiveFilter] = useState<'Tracking' | 'Selling' | 'Sold'>('Tracking');
 
     useEffect(() => {
@@ -164,7 +165,7 @@ export default function DashboardPage() {
                 {/* Grid of Jewellery Cards */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '1rem', paddingBottom: '6rem' }}>
                     {evaluations.map((item) => (
-                        <div key={item.id} style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', border: '1px solid #f1f5f9', borderRadius: '0.75rem', overflow: 'hidden' }}>
+                        <div key={item.id} onClick={() => setSelectedEvaluation(item)} style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', border: '1px solid #f1f5f9', borderRadius: '0.75rem', overflow: 'hidden', cursor: 'pointer', transition: 'box-shadow 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)'} onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}>
                             <div style={{ aspectRatio: '1/1', backgroundColor: '#f1f5f9', position: 'relative', overflow: 'hidden' }}>
                                 <Image
                                     src={item.image_url || "https://images.unsplash.com/photo-1599643478518-17488fbbcd75?q=80&w=600&auto=format&fit=crop"}
@@ -203,10 +204,91 @@ export default function DashboardPage() {
                 justifyContent: 'center',
                 border: 'none',
                 cursor: 'pointer',
-                transition: 'all 0.2s'
+                transition: 'all 0.2s',
+                zIndex: 40
             }}>
                 <span style={{ fontSize: '2rem' }}>+</span>
             </button>
+
+            {/* Evaluation Details Modal */}
+            {selectedEvaluation && (
+                <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'center',
+                    zIndex: 50,
+                    padding: '1rem'
+                }} onClick={() => setSelectedEvaluation(null)}>
+                    <div style={{
+                        backgroundColor: '#ffffff',
+                        width: '100%',
+                        maxWidth: '500px',
+                        borderRadius: '1.5rem',
+                        padding: '2rem',
+                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                        position: 'relative',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1.5rem'
+                    }} onClick={(e) => e.stopPropagation()}>
+                        <button
+                            onClick={() => setSelectedEvaluation(null)}
+                            style={{ position: 'absolute', top: '1rem', right: '1.25rem', background: 'none', border: 'none', fontSize: '1.5rem', color: '#94a3b8', cursor: 'pointer' }}
+                        >
+                            ✕
+                        </button>
+
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                            <div style={{ width: '100px', height: '100px', borderRadius: '1rem', overflow: 'hidden', backgroundColor: '#f1f5f9', flexShrink: 0, position: 'relative' }}>
+                                <Image
+                                    src={selectedEvaluation.image_url || "https://images.unsplash.com/photo-1599643478518-17488fbbcd75?q=80&w=600&auto=format&fit=crop"}
+                                    alt={selectedEvaluation.title}
+                                    fill
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div style={{ flex: 1 }}>
+                                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#0f172a', fontFamily: 'var(--font-serif)', marginBottom: '0.25rem' }}>{selectedEvaluation.title}</h3>
+                                <p style={{ color: '#edbc1d', fontSize: '1.25rem', fontWeight: 700 }}>₹{selectedEvaluation.estimated_value.toLocaleString('en-IN')}</p>
+                                <p style={{ color: '#64748b', fontSize: '0.75rem', marginTop: '0.25rem' }}>Evaluated on {new Date(selectedEvaluation.created_at).toLocaleDateString()}</p>
+                            </div>
+                        </div>
+
+                        <div style={{ backgroundColor: '#f8fafc', padding: '1rem', borderRadius: '0.75rem', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+                                <span style={{ color: '#64748b' }}>Estimated Metal Weight</span>
+                                <span style={{ color: '#0f172a', fontWeight: 600 }}>{selectedEvaluation.gold_weight}</span>
+                            </div>
+                            {selectedEvaluation.diamond_weight && (
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem', paddingTop: '0.75rem', borderTop: '1px solid #e2e8f0' }}>
+                                    <span style={{ color: '#64748b' }}>Estimated Diamond Carat</span>
+                                    <span style={{ color: '#0f172a', fontWeight: 600 }}>{selectedEvaluation.diamond_weight} ct</span>
+                                </div>
+                            )}
+                        </div>
+
+                        <button onClick={() => setSelectedEvaluation(null)} style={{
+                            width: '100%',
+                            backgroundColor: '#0f172a',
+                            color: '#ffffff',
+                            height: '3.5rem',
+                            borderRadius: '0.75rem',
+                            fontWeight: 700,
+                            fontSize: '1rem',
+                            border: 'none',
+                            cursor: 'pointer'
+                        }}>
+                            Close Details
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

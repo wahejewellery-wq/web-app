@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Luxury Evaluation Landing Page Variant 1</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#edbc1d",
+            "background-light": "#f8f8f6",
+            "background-dark": "#221e10",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .serif-title {
+      font-family: serif;
+      /* Using system serif for that high-end editorial look */
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+  <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden font-display">
+    <!-- Navigation Bar: Sleek and Minimalist -->
+    <nav
+      class="flex items-center justify-between px-6 py-6 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+      <div class="flex items-center">
+        <span class="material-symbols-outlined text-slate-900 dark:text-slate-100 cursor-pointer">menu</span>
+      </div>
+      <h2 class="text-slate-900 dark:text-slate-100 text-xl font-light tracking-[0.3em] uppercase">Wahe</h2>
+      <div class="flex items-center">
+        <span class="material-symbols-outlined text-slate-900 dark:text-slate-100 cursor-pointer">search</span>
+      </div>
+    </nav>
+    <!-- Hero Section: High-end Luxury -->
+    <div class="flex flex-col gap-8 px-6 pt-12 pb-16">
+      <div class="w-full aspect-[4/5] bg-center bg-cover rounded-xl shadow-2xl mb-4"
+        data-alt="Close up of elegant gold jewelry on white marble"
+        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcjZDfilZXEVRNr___V2q7BdssrAf6zUmjql5vM6KjLdw-NJ1gwAnq8U59vywy5J6Xw2UvVJH86PswdrX9L5BCIKDkaNaUbOvJpxrUpuxfnSdNhrFQENOK-2X2DPgoefkY71TT3YAzC6FOXZD7StABZG-QqoE9qCvlCn5p4Vjwl_jrPipYhylzj1MO0uWaQ5CAaHA7Maj-HehcoMyF2aQBYdYKNBi183rcJKaC46SLj_pHfN3HqF3YDwwE-GANaV2cgZVOotoV6SM");'>
+      </div>
+      <div class="flex flex-col gap-6">
+        <h1 class="serif-title text-slate-900 dark:text-slate-100 text-5xl font-light leading-tight tracking-tight">
+          Elegance <br /> Redefined by <br /> <span class="italic">Intelligence</span>
+        </h1>
+        <p class="text-slate-500 dark:text-slate-400 text-lg font-light leading-relaxed max-w-md">
+          Experience the pinnacle of luxury with our advanced AI gold estimation technology. Precise, sophisticated, and
+          instantaneous.
+        </p>
+        <div class="pt-4">
+          <button
+            class="w-full py-5 px-8 bg-primary text-slate-900 rounded-full text-base font-bold uppercase tracking-widest hover:brightness-110 transition-all shadow-lg active:scale-95">
+            Evaluate Now
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Features Section -->
+    <div class="flex flex-col gap-12 px-6 py-16 bg-white dark:bg-black/20">
+      <div class="flex flex-col gap-3">
+        <span class="text-primary text-xs font-bold uppercase tracking-[0.2em]">The Standard</span>
+        <h3 class="text-slate-900 dark:text-slate-100 text-3xl font-light serif-title">Excellence in Every Grain</h3>
+        <p class="text-slate-500 dark:text-slate-400 text-base font-light">Combining heritage expertise with proprietary
+          neural networks for unmatched accuracy.</p>
+      </div>
+      <div class="grid grid-cols-1 gap-10">
+        <!-- Feature 1 -->
+        <div class="flex flex-col gap-4 group">
+          <div
+            class="size-14 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">auto_awesome</span>
+          </div>
+          <div>
+            <h4 class="text-slate-900 dark:text-slate-100 text-xl font-semibold mb-2">AI Precision</h4>
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Instant market value estimation
+              powered by real-time global commodity data and visual recognition.</p>
+          </div>
+        </div>
+        <!-- Feature 2 -->
+        <div class="flex flex-col gap-4 group">
+          <div
+            class="size-14 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">verified</span>
+          </div>
+          <div>
+            <h4 class="text-slate-900 dark:text-slate-100 text-xl font-semibold mb-2">Expert Review</h4>
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Every digital appraisal is backed by
+              our network of master jewelers with decades of experience.</p>
+          </div>
+        </div>
+        <!-- Feature 3 -->
+        <div class="flex flex-col gap-4 group">
+          <div
+            class="size-14 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">security</span>
+          </div>
+          <div>
+            <h4 class="text-slate-900 dark:text-slate-100 text-xl font-semibold mb-2">Secure Vault</h4>
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Your data and evaluations are
+              protected by bank-grade encryption and privacy protocols.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Curated Collections / Gallery Section -->
+    <div class="flex flex-col gap-6 py-16">
+      <h2 class="text-slate-900 dark:text-slate-100 text-2xl font-light serif-title px-6">Curated Collections</h2>
+      <div class="flex overflow-x-auto gap-4 px-6 no-scrollbar">
+        <!-- Card 1 -->
+        <div class="min-w-[280px] h-[400px] relative rounded-xl overflow-hidden group">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+            data-alt="Antique gold necklace with intricate details"
+            style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCawW5RvHsbGUBSw9nlwMaL3KCHZLNo0d5LTTz7-ix0o6sv4RP2HI9vJdDxVVUEYInah0dcDCK-0dN9sRCSABjJGFe8xAv97m8EK1lRgbuIGYBFSajJejK1_ZUJ1kqNYS_vUvmkqgch0ugEoMFMm9BrL6Fj1QE_eWJ_fUeDXPKYXEUR2G-JI7dPyzROCbhmA2SOJFfZ-VAWfvWtVMSr32ILJF555_yPWfmZg3nIvx0Qgnqi_Si1dSkDvZ4quz1mOnna6vcE_v9qaPw");'>
+          </div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <p class="text-white text-xs font-bold uppercase tracking-widest mb-1">Heritage</p>
+            <h4 class="text-white text-xl font-light">Vintage Gold</h4>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="min-w-[280px] h-[400px] relative rounded-xl overflow-hidden group">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+            data-alt="Minimalist modern gold rings set"
+            style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAg2W6pZ4JEhgaKcRGCYIj3IyOQNtsb7CYrN-hLVMx-D13i6qObUs4ZRw8EYFFTKdeEtCi1dH4e4aE1LPnFIZwREGqOJ5UUKWl1WiuCpp62SNSHgoab-pc28QhZGM50gOWTIvl4GkHlv1b004t9uLVyrzaZWhju6phdP_F-k4HYHd6skr_xKIALN12vig4LEUK7dSluHZ_9jj5g2cYNfBF37pu9tvKQDiK7rCpjFF9ukvY2IeymNcxndHByQsj1n4QMdSnti7J1Hq0");'>
+          </div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <p class="text-white text-xs font-bold uppercase tracking-widest mb-1">Contemporary</p>
+            <h4 class="text-white text-xl font-light">Modern Minimalist</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Call to Action -->
+    <div class="px-6 py-20 bg-primary/10 dark:bg-primary/5 text-center">
+      <h3 class="serif-title text-3xl mb-4 text-slate-900 dark:text-slate-100">Ready to Discover Your Value?</h3>
+      <p class="text-slate-500 dark:text-slate-400 mb-8 max-w-xs mx-auto">Get your first AI-powered evaluation in less
+        than 60 seconds.</p>
+      <button
+        class="px-10 py-4 bg-slate-900 dark:bg-primary text-white dark:text-slate-900 rounded-full font-bold uppercase tracking-widest text-sm">
+        Get Started
+      </button>
+    </div>
+    <!-- Footer -->
+    <footer class="px-6 py-12 border-t border-slate-200 dark:border-slate-800">
+      <div class="flex flex-col gap-8">
+        <h2 class="text-slate-900 dark:text-slate-100 text-lg font-light tracking-[0.3em] uppercase">Wahe</h2>
+        <div class="grid grid-cols-2 gap-8 text-sm">
+          <div class="flex flex-col gap-3">
+            <p class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-tighter">Services</p>
+            <a class="text-slate-500 dark:text-slate-400" href="#">AI Valuation</a>
+            <a class="text-slate-500 dark:text-slate-400" href="#">Expert Appraisal</a>
+            <a class="text-slate-500 dark:text-slate-400" href="#">Consignment</a>
+          </div>
+          <div class="flex flex-col gap-3">
+            <p class="text-slate-900 dark:text-slate-100 font-bold uppercase tracking-tighter">Company</p>
+            <a class="text-slate-500 dark:text-slate-400" href="#">Our Story</a>
+            <a class="text-slate-500 dark:text-slate-400" href="#">Security</a>
+            <a class="text-slate-500 dark:text-slate-400" href="#">Contact</a>
+          </div>
+        </div>
+        <div class="pt-8 flex justify-between items-center text-[10px] text-slate-400 uppercase tracking-widest">
+          <p>© 2024 Wahe Intelligence</p>
+          <div class="flex gap-4">
+            <span class="material-symbols-outlined !text-sm">public</span>
+            <span class="material-symbols-outlined !text-sm">verified_user</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+  </style>
+</body>
+
+</html>
