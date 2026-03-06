@@ -5,6 +5,10 @@ export default function Footer() {
     return (
         <footer className={styles.footer}>
             <div className={`container ${styles.content}`}>
+                <div className={styles.logo}>
+                    <span className={styles.logoText}>GOLD ESTIMATOR</span>
+                    <span className={styles.brandText}>by wahe</span>
+                </div>
                 <p className={styles.copy}>
                     &copy; {new Date().getFullYear()} Gold Estimation Platform. All rights reserved.
                 </p>

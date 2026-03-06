@@ -96,8 +96,24 @@ export default function EvaluatePage() {
                     }
 
                     // Valuation Logic (same as old /api/estimate)
-                    const CURRENT_GOLD_PRICE_PER_GRAM_24K = 7500;
-                    const DIAMOND_PRICE_PER_CT = details.gemstoneType === 'natural' ? 35000 : 5000;
+                    let CURRENT_GOLD_PRICE_PER_GRAM_24K = 7500; // Approx Market Rate
+                    const DIAMOND_PRICE_PER_CT = 35000;
+
+                    try {
+                        const goldRes = await fetch('https://api.metalpriceapi.com/v1/latest?api_key=1298ec43bbdc40f5047ef3354b07a56f&base=INR&currencies=XAU');
+                        if (goldRes.ok) {
+                            const goldData = await goldRes.json();
+                            if (goldData && goldData.success && goldData.rates && goldData.rates.XAU) {
+                                // rates.XAU represents amount of XAU for 1 INR. Invert to get INR per XAU (Ounce)
+                                const pricePerOunceINR = 1 / goldData.rates.XAU;
+                                // Convert price per Troy Ounce to price per Gram
+                                const pricePerGramINR = pricePerOunceINR / 31.1034768;
+                                CURRENT_GOLD_PRICE_PER_GRAM_24K = pricePerGramINR;
+                            }
+                        }
+                    } catch (err) {
+                        console.error("Failed to fetch live gold rate:", err);
+                    }
 
                     const purityFactor = parseInt(details.karat) / 24;
                     const goldValue = goldWeight * CURRENT_GOLD_PRICE_PER_GRAM_24K * purityFactor;
@@ -159,7 +175,8 @@ export default function EvaluatePage() {
                     title: titleText,
                     category: details.category,
                     purity: details.karat,
-                    gold_weight: `${(estimation as any).gold_weight}g`,
+                    gold_weight: (estimation as any).gold_weight.toString(),
+                    diamond_weight: (estimation as any).diamond_weight?.toString() || null,
                     estimated_value: (estimation as any).estimated_value,
                     image_url: imageToSave
                 });
@@ -174,7 +191,9 @@ export default function EvaluatePage() {
                 id: Date.now().toString(),
                 title: titleText,
                 date: new Date().toISOString().split('T')[0],
-                weight: `${(estimation as any).gold_weight}g`,
+                weight: `${(estimation as any).gold_weight}g`, // Legacy
+                gold_weight: (estimation as any).gold_weight.toString(),
+                diamond_weight: (estimation as any).diamond_weight?.toString() || null,
                 value: (estimation as any).estimated_value,
                 image: imageToSave
             };

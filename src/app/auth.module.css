@@ -68,7 +68,7 @@
 
 .input:focus {
     border-color: var(--color-unvault-primary);
-    box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.2);
+    box-shadow: 0 0 0 2px rgba(115, 48, 4, 0.1);
 }
 
 .submitBtn {
@@ -86,8 +86,8 @@
 }
 
 .submitBtn:hover {
-    background: #DCA807;
-    /* Slightly darker gold */
+    background: #3E1A02;
+    /* Darker brown */
 }
 
 .submitBtn:active {

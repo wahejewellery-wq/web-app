@@ -1,22 +1,22 @@
 :root {
-  --color-gold-primary: #D4AF37;
-  --color-gold-light: #F1D06E;
-  --color-gold-dark: #aa8c2c;
+  --color-gold-primary: #733004;
+  --color-gold-light: #D2B48C;
+  --color-gold-dark: #3E1A02;
   --color-dark-bg: #FFFFFF;
-  --color-card-bg: #F9F9F9;
+  --color-card-bg: #FAF9F6;
   --color-text-main: #1A1A1A;
   --color-text-muted: #666666;
   --color-border: #E5E5E5;
 
-  /* Unvault Theme */
+  /* Theme Colors */
   --color-unvault-bg: #FAF9F6;
   /* Soft off-white/cream */
   --color-unvault-card: #FFFFFF;
   --color-unvault-text: #111827;
   /* Dark slate */
   --color-unvault-muted: #6B7280;
-  --color-unvault-primary: #EAB308;
-  /* Signature mustard gold */
+  --color-unvault-primary: #733004;
+  /* Signature brown */
 }
 
 body {

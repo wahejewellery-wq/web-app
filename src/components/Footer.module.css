@@ -18,6 +18,32 @@
     color: var(--color-text-muted);
     font-family: var(--font-sans);
     font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1;
+}
+
+.logoText {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #733004;
+    letter-spacing: 0.05em;
+}
+
+.brandText {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #733004;
+    opacity: 0.8;
+    margin-top: 2px;
+    letter-spacing: 0.02em;
 }
 
 .socials {

@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: '#f8f8f6', color: '#0f172a', minHeight: '100vh', width: '100vw', overflowX: 'hidden', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ backgroundColor: '#FAF9F6', color: '#1A1A1A', minHeight: '100vh', width: '100vw', overflowX: 'hidden', fontFamily: 'var(--font-sans)' }}>
 
       {/* Hero Section: High-end Luxury */}
       <section style={{ display: 'flex', flexDirection: 'column', gap: '2rem', padding: '3rem 1.5rem 4rem', maxWidth: '1200px', margin: '0 auto' }}>
@@ -21,7 +21,7 @@ export default function Home() {
           overflow: 'hidden'
         }}>
           <Image
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcjZDfilZXEVRNr___V2q7BdssrAf6zUmjql5vM6KjLdw-NJ1gwAnq8U59vywy5J6Xw2UvVJH86PswdrX9L5BCIKDkaNaUbOvJpxrUpuxfnSdNhrFQENOK-2X2DPgoefkY71TT3YAzC6FOXZD7StABZG-QqoE9qCvlCn5p4Vjwl_jrPipYhylzj1MO0uWaQ5CAaHA7Maj-HehcoMyF2aQBYdYKNBi183rcJKaC46SLj_pHfN3HqF3YDwwE-GANaV2cgZVOotoV6SM"
+            src="/home-banner.jpg"
             alt="Gold Jewellery Hero Image"
             fill
             style={{ objectFit: 'cover' }}
@@ -29,8 +29,8 @@ export default function Home() {
           />
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '3rem', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.02em', color: '#0f172a' }}>
-            Elegance <br /> Redefined by <br /> <span style={{ fontStyle: 'italic' }}>Intelligence</span>
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '3rem', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.02em', color: '#1A1A1A' }}>
+            Elegance <br /> Redefined by <br /> <span style={{ fontStyle: 'italic', color: '#733004' }}>Intelligence</span>
           </h1>
           <p style={{ color: '#64748b', fontSize: '1.125rem', fontWeight: 300, lineHeight: 1.625, maxWidth: '28rem' }}>
             Experience the pinnacle of luxury with our advanced AI gold estimation technology. Precise, sophisticated, and instantaneous.
@@ -40,8 +40,8 @@ export default function Home() {
               <button style={{
                 width: '100%',
                 padding: '1.25rem 2rem',
-                backgroundColor: '#edbc1d',
-                color: '#0f172a',
+                backgroundColor: '#733004',
+                color: '#FFFFFF',
                 borderRadius: '9999px',
                 fontSize: '1rem',
                 fontWeight: 700,
@@ -49,7 +49,7 @@ export default function Home() {
                 letterSpacing: '0.1em',
                 border: 'none',
                 cursor: 'pointer',
-                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                boxShadow: '0 10px 15px -3px rgba(115, 48, 4, 0.2)',
                 transition: 'all 0.2s',
               }}>
                 Evaluate Now
@@ -62,7 +62,7 @@ export default function Home() {
       {/* Features Section */}
       <section style={{ display: 'flex', flexDirection: 'column', gap: '3rem', padding: '4rem 1.5rem', backgroundColor: '#FFFFFF' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
-          <span style={{ color: '#edbc1d', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em' }}>The Standard</span>
+          <span style={{ color: '#733004', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em' }}>The Standard</span>
           <h3 style={{ color: '#0f172a', fontSize: '1.875rem', fontWeight: 300, fontFamily: 'var(--font-serif)' }}>Excellence in Every Grain</h3>
           <p style={{ color: '#64748b', fontSize: '1rem', fontWeight: 300 }}>Combining heritage expertise with proprietary neural networks for unmatched accuracy.</p>
         </div>
@@ -70,7 +70,7 @@ export default function Home() {
 
           {/* Feature 1 */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '9999px', backgroundColor: 'rgba(237, 188, 29, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#edbc1d', fontSize: '1.5rem' }}>
+            <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '9999px', backgroundColor: 'rgba(115, 48, 4, 0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#733004', fontSize: '1.5rem' }}>
               ✨
             </div>
             <div>
@@ -81,7 +81,7 @@ export default function Home() {
 
           {/* Feature 2 */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '9999px', backgroundColor: 'rgba(237, 188, 29, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#edbc1d', fontSize: '1.5rem' }}>
+            <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '9999px', backgroundColor: 'rgba(115, 48, 4, 0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#733004', fontSize: '1.5rem' }}>
               ✓
             </div>
             <div>
@@ -145,7 +145,7 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section style={{ padding: '5rem 1.5rem', backgroundColor: 'rgba(237, 188, 29, 0.1)', textAlign: 'center' }}>
+      <section style={{ padding: '5rem 1.5rem', backgroundColor: 'rgba(115, 48, 4, 0.05)', textAlign: 'center' }}>
         <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.875rem', marginBottom: '1rem', color: '#0f172a' }}>Ready to Discover Your Value?</h3>
         <p style={{ color: '#64748b', marginBottom: '2rem', maxWidth: '20rem', margin: '0 auto 2rem' }}>Get your first AI-powered evaluation in less than 60 seconds.</p>
         <Link href="/dashboard">

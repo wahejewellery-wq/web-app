@@ -2,7 +2,9 @@ export interface PortfolioItem {
     id: string;
     title: string;
     date: string;
-    weight: string;
+    weight: string; // Keep for legacy
+    gold_weight?: string;
+    diamond_weight?: string | null;
     value: number;
     image: string;
 }
@@ -25,4 +27,11 @@ export const getItems = (): PortfolioItem[] => {
 export const clearItems = () => {
     if (typeof window === 'undefined') return;
     localStorage.removeItem(STORAGE_KEY);
+};
+
+export const deleteItem = (id: string) => {
+    if (typeof window === 'undefined') return;
+    const existing = getItems();
+    const updated = existing.filter(item => item.id !== id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
 };

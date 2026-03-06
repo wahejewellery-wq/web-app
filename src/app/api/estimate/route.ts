@@ -54,8 +54,25 @@ export async function POST(request: Request) {
         const diamondWeight = diamond_weight || 0;
 
         // Valuation Logic
-        const CURRENT_GOLD_PRICE_PER_GRAM_24K = 7500; // Approx Market Rate
+        let CURRENT_GOLD_PRICE_PER_GRAM_24K = 7500; // Approx Market Rate (Fallback)
         const DIAMOND_PRICE_PER_CT = 35000;
+
+        try {
+            // Fetch live gold rates using MetalPriceAPI
+            const goldRes = await fetch('https://api.metalpriceapi.com/v1/latest?api_key=1298ec43bbdc40f5047ef3354b07a56f&base=INR&currencies=XAU', { next: { revalidate: 3600 } });
+            if (goldRes.ok) {
+                const goldData = await goldRes.json();
+                if (goldData && goldData.success && goldData.rates && goldData.rates.XAU) {
+                    // rates.XAU represents amount of XAU for 1 INR. Invert to get INR per XAU (Ounce)
+                    const pricePerOunceINR = 1 / goldData.rates.XAU;
+                    // Convert price per Ounce to price per Gram (using 28.35 as requested)
+                    const pricePerGramINR = pricePerOunceINR / 28.35;
+                    CURRENT_GOLD_PRICE_PER_GRAM_24K = pricePerGramINR;
+                }
+            }
+        } catch (error) {
+            console.error("Failed to fetch live gold rate, using fallback.", error);
+        }
 
         const purityFactor = parseInt(purity as string) / 24;
         const goldValue = goldWeight * CURRENT_GOLD_PRICE_PER_GRAM_24K * purityFactor;
